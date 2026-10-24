@@ -1,11 +1,6 @@
-//Document is the DOM can be accessed in the console with document.window.
-// Tree is from the top, html, body, p etc.
-
 //Problem: User interaction does not provide the correct results.
 //Solution: Add interactivity so the user can manage daily tasks.
 //Break things down into smaller steps and take each step at a time.
-
-// Event handling, user interaction is what starts the code execution.
 
 const taskInput = document.getElementById('new-task');
 const addButton = document.getElementsByTagName('button')[0];
@@ -24,7 +19,6 @@ const createNewTaskElement = function (taskString) {
   label.innerText = taskString;
   label.className = 'task';
 
-  //Each elements, needs appending
   checkBox.type = 'checkbox';
   editInput.type = 'text';
   editInput.className = 'task';
@@ -36,7 +30,6 @@ const createNewTaskElement = function (taskString) {
   deleteButtonImg.src = './remove.svg';
   deleteButton.appendChild(deleteButtonImg);
 
-  //and appending.
   listItem.appendChild(checkBox);
   listItem.appendChild(label);
   listItem.appendChild(editInput);
@@ -95,34 +88,23 @@ const taskIncomplete = function () {
 addButton.addEventListener('click', addTask);
 
 const bindTaskEvents = function (taskListItem, checkBoxEventHandler) {
-  //select ListItems children
   const checkBox = taskListItem.querySelector('input[type=checkbox]');
   const editButton = taskListItem.querySelector('button.edit');
   const deleteButton = taskListItem.querySelector('button.delete');
 
-  //Bind editTask to edit button.
   editButton.onclick = editTask;
-  //Bind deleteTask to delete button.
   deleteButton.onclick = deleteTask;
-  //Bind taskCompleted to checkBoxEventHandler.
   checkBox.onchange = checkBoxEventHandler;
 };
 
-//cycle over incompleteTaskHolder ul list items
-//for each list item
 for (let i = 0; i < incompleteTaskHolder.children.length; i++) {
-  //bind events to list items chldren(tasksCompleted)
   bindTaskEvents(incompleteTaskHolder.children[i], taskCompleted);
 }
 
-//cycle over completedTasksHolder ul list items
 for (let i = 0; i < completedTasksHolder.children.length; i++) {
-  //bind events to list items chldren(tasksIncompleted)
   bindTaskEvents(completedTasksHolder.children[i], taskIncomplete);
 }
 
 // Issues with usability don't get seen until they are in front of a human tester.
 
 //prevent creation of empty tasks.
-
-//Change edit to save when you are in edit mode.
